@@ -1,0 +1,79 @@
+.wb-submit {
+  margin-top: 1rem;
+}
+
+.wb-panel {
+  margin-top: 1.25rem;
+}
+
+.wb-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.25rem 0;
+  color: var(--ion-color-medium);
+  text-align: center;
+}
+
+.wb-card {
+  margin-top: 0.5rem;
+}
+
+.wb-country {
+  color: var(--ion-color-medium);
+  font-weight: 400;
+}
+
+.wb-body {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wb-icon {
+  width: 6.25rem;
+  height: 6.25rem;
+}
+
+.wb-readout {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.wb-temp {
+  margin: 0;
+  font-size: clamp(2.5rem, 10vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.wb-unit {
+  font-size: 0.55em;
+  margin-left: 0.15em;
+  color: var(--ion-color-medium);
+}
+
+.wb-desc {
+  margin: 0;
+  color: var(--ion-color-medium);
+}
+
+.wb-meta {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ion-color-step-150);
+}
+
+.wb-meta__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ion-color-medium);
+}
+
+.wb-meta__value {
+  margin-top: 0.15rem;
+  font-weight: 600;
+}
