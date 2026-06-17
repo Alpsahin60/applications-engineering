@@ -1,0 +1,24 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
+# Build / Cache
+node_modules/
+dist/
+out-tsc/
+.angular/cache/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Sekrete
+*/projects/**/environments/environment.ts
+*/projects/**/environments/environment.development.ts
