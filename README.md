@@ -9,9 +9,10 @@ Test- und Build-Konfiguration.
 | Ordner        | Aufgabe                                                  |
 |---------------|----------------------------------------------------------|
 | `wetter-app/` | Wetter-Anzeige (Angular &amp; Ionic) auf Basis der OpenWeather-API |
+| `ampel/`      | Verkehrsampel als Zustandsautomat mit Defekt-, Auto- und Notfallmodus |
 
-Weitere Aufgaben (z.&nbsp;B. Ampel) folgen jeweils als zusaetzlicher
-Unterordner mit eigener Doku.
+Weitere Aufgaben folgen jeweils als zusaetzlicher Unterordner mit eigener
+Doku.
 
 ## Arbeiten mit dem Repo
 
