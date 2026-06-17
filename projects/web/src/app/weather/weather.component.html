@@ -1,0 +1,82 @@
+<section class="weather" aria-labelledby="weather-title">
+  <header class="weather__header">
+    <h1 id="weather-title">Wetter</h1>
+    <p class="weather__lead">Aktuelle Bedingungen direkt von OpenWeather.</p>
+  </header>
+
+  <form class="weather__form" (ngSubmit)="submit()" autocomplete="off">
+    <label class="weather__label" for="location">Ort</label>
+    <div class="weather__inputRow">
+      <input
+        id="location"
+        name="location"
+        type="text"
+        [formControl]="locationControl"
+        placeholder="z. B. Buchs,CH"
+        autocomplete="off"
+        spellcheck="false"
+        inputmode="search"
+        aria-describedby="location-help"
+      />
+      <button type="submit" class="weather__submit">Anzeigen</button>
+    </div>
+    <small id="location-help" class="weather__help">
+      Tipp: Ort und Laendercode kombinieren (z. B. <code>Zuerich,CH</code>).
+    </small>
+  </form>
+
+  <div class="weather__panel" aria-live="polite" aria-atomic="true">
+    @if (status() === 'loading') {
+      <div class="weather__status weather__status--loading">
+        <span class="weather__spinner" aria-hidden="true"></span>
+        <span>Lade Wetter fuer <strong>{{ pendingQuery() }}</strong>&hellip;</span>
+      </div>
+    } @else if (status() === 'error' && error(); as err) {
+      <div class="weather__status weather__status--error" role="alert">
+        {{ err.message }}
+      </div>
+    } @else if (status() === 'success' && weather(); as data) {
+      <article class="weather__card">
+        <header class="weather__cardHeader">
+          <h2>{{ data.location }}<span class="weather__country">, {{ data.country }}</span></h2>
+          <p class="weather__observed">
+            Stand: {{ data.observedAt | date: 'dd.MM.yyyy HH:mm' }}
+          </p>
+        </header>
+        <div class="weather__body">
+          <img
+            class="weather__icon"
+            [src]="data.iconUrl"
+            [alt]="'Symbol: ' + data.description"
+            width="100"
+            height="100"
+            loading="lazy"
+          />
+          <div class="weather__readout">
+            <p class="weather__temp">
+              <span>{{ data.temperatureCelsius | number: '1.0-1' }}</span>
+              <span class="weather__unit">&deg;C</span>
+            </p>
+            <p class="weather__desc">{{ data.description }}</p>
+          </div>
+        </div>
+        <dl class="weather__meta">
+          <div>
+            <dt>Gefuehlt</dt>
+            <dd>{{ data.feelsLikeCelsius | number: '1.0-1' }} &deg;C</dd>
+          </div>
+          <div>
+            <dt>Luftfeuchte</dt>
+            <dd>{{ data.humidityPercent }} %</dd>
+          </div>
+          <div>
+            <dt>Wind</dt>
+            <dd>{{ data.windSpeedMps | number: '1.0-1' }} m/s</dd>
+          </div>
+        </dl>
+      </article>
+    } @else {
+      <p class="weather__status">Noch keine Daten geladen.</p>
+    }
+  </div>
+</section>
