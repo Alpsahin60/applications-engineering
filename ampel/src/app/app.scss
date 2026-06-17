@@ -1,0 +1,38 @@
+.seite {
+  min-height: 100dvh;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--abstand-gross);
+}
+
+.kopf {
+  max-width: 760px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-klein);
+
+  &__kennzeichnung {
+    margin: 0;
+    color: var(--farbe-text-leise);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  &__titel {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    letter-spacing: -0.02em;
+  }
+
+  &__untertitel {
+    margin: 0;
+    color: var(--farbe-text-leise);
+    max-width: 56ch;
+    align-self: center;
+  }
+}

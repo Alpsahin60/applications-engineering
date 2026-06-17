@@ -1,0 +1,91 @@
+:host {
+  --lampe-groesse: 7.5rem;
+  --lampe-farbe: #555;
+  --lampe-leucht: #888;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--lampe-groesse);
+  height: var(--lampe-groesse);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #2a2f37 0%, #0d0f12 70%);
+  box-shadow:
+    inset 0 4px 10px rgba(0, 0, 0, 0.7),
+    inset 0 -2px 6px rgba(255, 255, 255, 0.04);
+  transition: filter 200ms ease;
+}
+
+:host([data-farbe='rot']) {
+  --lampe-farbe: var(--farbe-rot);
+  --lampe-leucht: rgba(255, 59, 48, 0.55);
+}
+
+:host([data-farbe='gelb']) {
+  --lampe-farbe: var(--farbe-gelb);
+  --lampe-leucht: rgba(255, 214, 10, 0.55);
+}
+
+:host([data-farbe='gruen']) {
+  --lampe-farbe: var(--farbe-gruen);
+  --lampe-leucht: rgba(52, 199, 89, 0.55);
+}
+
+.lampe__leuchte {
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(20, 20, 20, 0.95) 70%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 200ms ease,
+    box-shadow 250ms ease,
+    transform 200ms ease;
+}
+
+:host([data-an='true']) .lampe__leuchte {
+  background: radial-gradient(
+    circle at 35% 30%,
+    color-mix(in srgb, var(--lampe-farbe) 95%, white 20%) 0%,
+    var(--lampe-farbe) 65%,
+    color-mix(in srgb, var(--lampe-farbe) 55%, black 40%) 100%
+  );
+  box-shadow:
+    0 0 28px 4px var(--lampe-leucht),
+    inset 0 0 14px rgba(255, 255, 255, 0.3);
+}
+
+:host([data-defekt='true']) {
+  filter: grayscale(0.6) brightness(0.7);
+}
+
+:host([data-defekt='true']) .lampe__leuchte {
+  background: repeating-linear-gradient(
+    45deg,
+    #1a1d22,
+    #1a1d22 6px,
+    #2a2f37 6px,
+    #2a2f37 12px
+  );
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.lampe__defekt-symbol {
+  color: var(--farbe-warnung);
+  font-size: calc(var(--lampe-groesse) * 0.32);
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host,
+  .lampe__leuchte {
+    transition: none;
+  }
+}

@@ -1,0 +1,76 @@
+<section class="ampel" aria-labelledby="ampel-titel">
+  <h2 id="ampel-titel" class="sr-only">Ampelanzeige</h2>
+
+  <div
+    class="ampel__gehaeuse"
+    [attr.data-modus]="aktiverModus()"
+    [attr.aria-label]="'Aktuelle Phase: ' + phaseText()"
+    role="group"
+  >
+    @for (lampe of lampen(); track lampe.farbe) {
+      <am-lampe [farbe]="lampe.farbe" [an]="lampe.an" [defekt]="lampe.defekt" />
+    }
+  </div>
+
+  <div class="status" aria-live="polite">
+    <p class="status__phase">
+      <span class="status__label">Phase</span>
+      <span class="status__wert">{{ phaseText() }}</span>
+    </p>
+    <p class="status__modus">
+      <span class="status__label">Modus</span>
+      <span class="status__wert">{{ modusText() }}</span>
+    </p>
+  </div>
+
+  @if (hatDefekt()) {
+    <div class="meldung meldung--warnung" role="alert">
+      <p class="meldung__titel">Defekte Lampe erkannt</p>
+      <p class="meldung__text">
+        Eine oder mehrere Lampen leuchten nicht. Reparatur erforderlich.
+      </p>
+      <button
+        type="button"
+        class="taste taste--warnung"
+        (click)="onReparieren()"
+      >
+        Lampen reparieren
+      </button>
+    </div>
+  }
+
+  @if (zeigeManuelleSteuerung()) {
+    <div class="steuerung" aria-label="Manuelle Steuerung">
+      <button type="button" class="taste taste--primaer" (click)="onTick()">
+        Naechste Phase
+      </button>
+      <button type="button" class="taste" (click)="onAusschalten()">
+        Ampel ausschalten
+      </button>
+      <button type="button" class="taste" (click)="onDefektSimulieren()">
+        Defekt simulieren
+      </button>
+    </div>
+  }
+
+  <div class="modi" role="group" aria-label="Betriebsmodi">
+    <button
+      type="button"
+      class="taste taste--toggle"
+      [class.taste--aktiv]="automodus()"
+      [attr.aria-pressed]="automodus()"
+      (click)="onAutomodusToggle()"
+    >
+      Automodus
+    </button>
+    <button
+      type="button"
+      class="taste taste--toggle"
+      [class.taste--aktiv]="notfallmodus()"
+      [attr.aria-pressed]="notfallmodus()"
+      (click)="onNotfallmodusToggle()"
+    >
+      Notfallmodus
+    </button>
+  </div>
+</section>

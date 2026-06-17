@@ -1,0 +1,53 @@
+:root {
+  color-scheme: dark;
+
+  --farbe-hintergrund: #0b0d10;
+  --farbe-flaeche: #14181d;
+  --farbe-flaeche-hoch: #1c2026;
+  --farbe-rahmen: #2a2f37;
+  --farbe-text: #e6e9ee;
+  --farbe-text-leise: #9aa3ad;
+  --farbe-akzent: #4f8cff;
+  --farbe-warnung: #ff5b5b;
+  --farbe-fokus: #74a8ff;
+
+  --farbe-rot: #ff3b30;
+  --farbe-gelb: #ffd60a;
+  --farbe-gruen: #34c759;
+
+  --radius-klein: 8px;
+  --radius-mittel: 14px;
+  --radius-gross: 22px;
+
+  --schatten: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --abstand-klein: 0.5rem;
+  --abstand-mittel: 1rem;
+  --abstand-gross: 1.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top, #14181d 0%, var(--farbe-hintergrund) 65%) fixed;
+  color: var(--farbe-text);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--farbe-fokus);
+  outline-offset: 2px;
+  border-radius: var(--radius-klein);
+}
