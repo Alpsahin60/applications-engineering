@@ -1,0 +1,43 @@
+name: grade-calculator CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'grade-calculator/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'grade-calculator/**'
+      - '.github/workflows/ci.yml'
+
+jobs:
+  test:
+    name: Lint & green test suite
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: grade-calculator
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (LTS)
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: grade-calculator/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # Nur die gruene Suite gegen GradeCalculatorFixed: die zwei absichtlich
+      # roten Tests in grade-calculator-test.spec.ts bleiben aussen vor, damit
+      # die oeffentliche Pipeline gruen ist. Vitest laeuft headless (jsdom).
+      - name: Run green test suite
+        run: npm run test:ci

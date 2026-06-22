@@ -10,6 +10,7 @@ Test- und Build-Konfiguration.
 |---------------|----------------------------------------------------------|
 | `wetter-app/` | Wetter-Anzeige (Angular &amp; Ionic) auf Basis der OpenWeather-API |
 | `ampel/`      | Verkehrsampel als Zustandsautomat mit Defekt-, Auto- und Notfallmodus |
+| `grade-calculator/` | Notenrechner: Test-Suite mit Nachweis zweier Fehler im Library-Service und korrigierter Implementierung |
 
 Weitere Aufgaben folgen jeweils als zusaetzlicher Unterordner mit eigener
 Doku.
